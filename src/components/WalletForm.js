@@ -15,7 +15,6 @@ class WalletForm extends Component {
     const currenciesArray = Object.keys(data);
     const indexUSDT = currenciesArray.indexOf('USDT');
     currenciesArray.splice(indexUSDT, 1);
-    console.log(currenciesArray);
     dispatch(saveCurrencies(currenciesArray));
   };
 
@@ -54,16 +53,16 @@ class WalletForm extends Component {
               </option>))}
           </select>
           <select data-testid="method-input">
-            <option>Dinheiro</option>
-            <option>Cartão de crédito</option>
-            <option>Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
           <select data-testid="tag-input">
-            <option>Alimentação</option>
-            <option>Lazer</option>
-            <option>Trabalho</option>
-            <option>Transporte</option>
-            <option>Saúde</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </form>
       </div>
