@@ -29,7 +29,6 @@ class Login extends Component {
     event.preventDefault();
     const { email } = this.state;
     const { dispatch, history } = this.props;
-    console.log(history);
     dispatch(saveUserEmail(email));
     history.push('/carteira');
   };
