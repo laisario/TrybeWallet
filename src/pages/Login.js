@@ -25,8 +25,8 @@ class Login extends Component {
     return verifyEmail && verifyPassword;
   };
 
-  handleSubmit = () => {
-    // event.preventDefault();
+  handleSubmit = (event) => {
+    event.preventDefault();
     const { email } = this.state;
     const { dispatch, history } = this.props;
     console.log(history);
@@ -35,15 +35,17 @@ class Login extends Component {
   };
 
   render() {
+    const { email, senha } = this.state;
     return (
       <div>
-        <form onSubmit={ this.handleSubmit() }>
+        <form onSubmit={ this.handleSubmit }>
           <label htmlFor="input-email">
             Email:
             <input
               id="input-email"
               type="email"
               data-testid="email-input"
+              value={ email }
               onChange={ this.hadleChangeInputEmail }
             />
           </label>
@@ -54,12 +56,12 @@ class Login extends Component {
               type="password"
               data-testid="password-input"
               onChange={ this.hadleChangeInputPassword }
+              value={ senha }
             />
           </label>
           <button
             type="submit"
             disabled={ !this.validateButon() }
-            // onClick={ this.handleSubmit() }
           >
             Entrar
           </button>
