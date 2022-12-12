@@ -29,15 +29,19 @@ class Table extends Component {
                   <td>{Number(expense.value).toFixed(2)}</td>
                   <td>{expense.exchangeRates[expense.currency]?.name}</td>
                   <td>
-                    {`R$: ${Number(expense.exchangeRates[expense.currency]?.ask)
-                      .toFixed(2)}`}
+                    {
+                      new Intl
+                        .NumberFormat('en-US', { style: 'currency', currency: 'BRL' })
+                        .format(expense.exchangeRates[expense.currency]?.ask)
+                    }
                   </td>
                   <td>
-                    {`R$: ${
+                    {
                       new Intl
                         .NumberFormat('en-US', { style: 'currency', currency: 'BRL' })
                         .format(Number(expense.value)
-                      * Number(expense.exchangeRates[expense.currency]?.ask))}`}
+                      * Number(expense.exchangeRates[expense.currency]?.ask))
+                    }
                   </td>
                   <td>Real Brasileiro</td>
                 </tr>

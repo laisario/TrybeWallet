@@ -7,9 +7,9 @@ class WalletForm extends Component {
   state = {
     value: '',
     description: '',
-    currency: '',
-    method: '',
-    tag: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
   };
 
   componentDidMount() {
@@ -72,7 +72,7 @@ class WalletForm extends Component {
               onChange={ this.handleValueOnChange }
               value={ currency }
             >
-              <option value="">Selecione a moeda</option>
+              {/* <option value="">Selecione a moeda</option> */}
               {currencies.map((moeda) => (
                 <option
                   key={ moeda }
@@ -91,7 +91,7 @@ class WalletForm extends Component {
               value={ method }
             >
               Método de pagamento:
-              <option value="">-</option>
+              {/* <option value="">-</option> */}
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
               <option value="Cartão de débito">Cartão de débito</option>
@@ -107,7 +107,7 @@ class WalletForm extends Component {
               value={ tag }
             >
               Tag:
-              <option value="">-</option>
+              {/* <option value="">-</option> */}
               <option value="Alimentação">Alimentação</option>
               <option value="Lazer">Lazer</option>
               <option value="Trabalho">Trabalho</option>
