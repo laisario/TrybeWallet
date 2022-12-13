@@ -1,7 +1,7 @@
 export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const SAVE_CURRENCIES = 'SAVE_CURRENCIES';
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
-export const SAVE_EXCHANGE = 'EXCHANGE_RATES';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export function saveUserEmail(email) {
   return {
@@ -41,5 +41,12 @@ export function fetchExchangeRate(expense) {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const data = await response.json();
     dispatch(saveMyExpenses(expense, data));
+  };
+}
+
+export function deleteExpense(expense) {
+  return {
+    type: DELETE_EXPENSE,
+    payload: expense,
   };
 }
