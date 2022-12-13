@@ -2,6 +2,7 @@ export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const SAVE_CURRENCIES = 'SAVE_CURRENCIES';
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export function saveUserEmail(email) {
   return {
@@ -47,6 +48,13 @@ export function fetchExchangeRate(expense) {
 export function deleteExpense(expense) {
   return {
     type: DELETE_EXPENSE,
+    payload: expense,
+  };
+}
+
+export function editExpense(expense) {
+  return {
+    type: EDIT_EXPENSE,
     payload: expense,
   };
 }
