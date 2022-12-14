@@ -1,26 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { render, screen } from '@testing-library/react';
-import { legacy_createStore as createStore, combineReducers } from 'redux';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Login from '../pages/Login';
-import user from '../redux/reducers/user';
-
-const renderWithRedux = (
-  component,
-  {
-    initialState,
-    store = createStore(combineReducers({ user }), initialState),
-  } = {},
-) => ({
-  ...render(<Provider store={ store }>{component}</Provider>),
-  store,
-}
-);
+import { renderWithRouterAndRedux } from './helpers/renderWith';
+// import rootReducer from '../redux/reducers/index';
+import App from '../App';
 
 describe('Testa a página de Login', () => {
   test('A página deve renderizar dois inputs e um botão', () => {
-    renderWithRedux(<Login />);
+    renderWithRouterAndRedux(<App />, { initialEntries: ['/'] });
+
     const inputEmail = screen.getByRole('textbox', {
       name: /email:/i,
     });
@@ -42,7 +30,8 @@ describe('Testa a página de Login', () => {
         email: testEmail,
       },
     };
-    const { store } = renderWithRedux(<Login />, { initialState });
+
+    const { store } = renderWithRouterAndRedux(<App />, { initialEntries: ['/'], initialState });
 
     const inputEmail = screen.getByRole('textbox', {
       name: /email:/i,
@@ -58,3 +47,6 @@ describe('Testa a página de Login', () => {
     expect(store.getState().user.email).toBe(testEmail);
   });
 });
+// 1. Acessar
+// 2. Agir / Interagir
+// 3. Aferir
