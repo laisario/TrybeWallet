@@ -130,7 +130,7 @@ class WalletForm extends Component {
             <MenuItem value="Lazer">Lazer</MenuItem>
             <MenuItem value="Trabalho">Trabalho</MenuItem>
             <MenuItem value="Transporte">Transporte</MenuItem>
-            <MenuItem vvalue="Saúde">Saúde</MenuItem>
+            <MenuItem value="Saúde">Saúde</MenuItem>
           </Select>
           <Button
             onClick={ this.handleClick }
