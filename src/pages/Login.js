@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import { saveUserEmail } from '../redux/actions';
+import Logo from '../assets/logoTrybeWallet.svg';
 
 class Login extends Component {
   state = {
@@ -36,35 +39,39 @@ class Login extends Component {
   render() {
     const { email, senha } = this.state;
     return (
-      <div>
-        <form onSubmit={ this.handleSubmit }>
-          <label htmlFor="input-email">
-            Email:
-            <input
-              id="input-email"
-              type="email"
+      <div className="container-form-login">
+        <div className="container-form-login-2">
+          <img src={ Logo } alt="Logo TrybeWallet" className="img-form-login" />
+          <form onSubmit={ this.handleSubmit } className="form-login">
+            <TextField
+              required
+              id="outlined-normal"
+              label="Email"
               data-testid="email-input"
               value={ email }
               onChange={ this.hadleChangeInputEmail }
             />
-          </label>
-          <label htmlFor="input-senha">
-            Senha:
-            <input
-              id="input-senha"
-              type="password"
+            <TextField
               data-testid="password-input"
               onChange={ this.hadleChangeInputPassword }
               value={ senha }
+              id="outlined-password-input"
+              label="Password"
+              type="password"
+              style={ { marginTop: 10, marginBottom: 10 } }
+              autoComplete="current-password"
             />
-          </label>
-          <button
-            type="submit"
-            disabled={ !this.validateButon() }
-          >
-            Entrar
-          </button>
-        </form>
+            <Button
+              disabled={ !this.validateButon() }
+              variant="contained"
+              size="large"
+              color="success"
+              onClick={ this.handleSubmit }
+            >
+              Entrar
+            </Button>
+          </form>
+        </div>
       </div>
     );
   }

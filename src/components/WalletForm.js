@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import TextField from '@mui/material/TextField';
+import { InputLabel, Select, MenuItem, Button } from '@mui/material';
 import { fetchEconomiaApi, fetchExchangeRate, saveEditedExpense } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
     value: '',
     description: '',
-    currency: 'USD',
-    method: 'Dinheiro',
-    tag: 'Alimentação',
+    currency: '',
+    method: '',
+    tag: '',
   };
 
   componentDidMount() {
@@ -55,89 +57,91 @@ class WalletForm extends Component {
     const { value, description, tag, currency, method } = this.state;
 
     return (
-      <div>
-        <form>
-          <label htmlFor="value">
-            Valor:
-            <input
-              id="value"
-              type="text"
-              data-testid="value-input"
-              name="value"
-              onChange={ this.handleValueOnChange }
-              value={ value }
-            />
-          </label>
-          <label htmlFor="description">
-            Descrição:
-            <input
-              id="description"
-              type="text"
-              data-testid="description-input"
-              name="description"
-              value={ description }
-              onChange={ this.handleValueOnChange }
-            />
-          </label>
-          <label htmlFor="currency">
-            Moeda:
-            <select
-              id="currency"
-              data-testid="currency-input"
-              name="currency"
-              onChange={ this.handleValueOnChange }
-              value={ currency }
-            >
-              {/* <option value="">Selecione a moeda</option> */}
-              {currencies.map((moeda) => (
-                <option
-                  key={ moeda }
-                  value={ moeda }
-                >
-                  {moeda}
-                </option>))}
-            </select>
-          </label>
-          <label htmlFor="method">
+      <div className="container-form">
+        <form className="form">
+          <TextField
+            onChange={ this.handleValueOnChange }
+            value={ value }
+            name="value"
+            data-testid="value-input"
+            id="outlined-number"
+            label="Valor"
+            type="number"
+
+          />
+          <TextField
+            type="text"
+            onChange={ this.handleValueOnChange }
+            value={ description }
+            name="description"
+            data-testid="description-input"
+            id="outlined"
+            label="Descrição"
+          />
+          <InputLabel id="demo-simple-select-label">Moeda: </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            data-testid="currency-input"
+            name="currency"
+            onChange={ this.handleValueOnChange }
+            value={ currency }
+          >
+            <MenuItem value="">-</MenuItem>
+            {currencies.map((moeda) => (
+              <MenuItem
+                key={ moeda }
+                value={ moeda }
+              >
+                {moeda}
+
+              </MenuItem>
+            ))}
+          </Select>
+          <InputLabel id="demo-simple-selectmethod-label">
             Forma de pagamento:
-            <select
-              data-testid="method-input"
-              onChange={ this.handleValueOnChange }
-              name="method"
-              value={ method }
-            >
-              Método de pagamento:
-              {/* <option value="">-</option> */}
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
-            </select>
-          </label>
-          <label htmlFor="tag">
+          </InputLabel>
+          <Select
+            labelId="demo-simple-selectmethod-label"
+            id="demo-simple-select"
+            data-testid="method-input"
+            onChange={ this.handleValueOnChange }
+            value={ method }
+            name="method"
+          >
+            <MenuItem value="">-</MenuItem>
+            <MenuItem value="Dinheiro">Dinheiro</MenuItem>
+            <MenuItem value="Cartão de crédito">Cartão de crédito</MenuItem>
+            <MenuItem value="Cartão de débito">Cartão de débito</MenuItem>
+          </Select>
+          <InputLabel id="demo-simple-selecttag-label">
             Tag:
-            <select
-              data-testid="tag-input"
-              id="tag"
-              onChange={ this.handleValueOnChange }
-              name="tag"
-              value={ tag }
-            >
-              Tag:
-              {/* <option value="">-</option> */}
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Trabalho">Trabalho</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saúde">Saúde</option>
-            </select>
-          </label>
-          <button
+          </InputLabel>
+          <Select
+            labelId="demo-simple-selectmethod-label"
+            id="demo-simple-select"
+            data-testid="tag-input"
+            onChange={ this.handleValueOnChange }
+            name="tag"
+            value={ tag }
+          >
+            <MenuItem value="">-</MenuItem>
+            <MenuItem value="Alimentação">Alimentação</MenuItem>
+            <MenuItem value="Lazer">Lazer</MenuItem>
+            <MenuItem value="Trabalho">Trabalho</MenuItem>
+            <MenuItem value="Transporte">Transporte</MenuItem>
+            <MenuItem vvalue="Saúde">Saúde</MenuItem>
+          </Select>
+          <Button
             onClick={ this.handleClick }
             type="button"
             data-testid="button"
+            variant="contained"
+            size="large"
+            color="primary"
           >
             {editor ? 'Editar despesa' : 'Adicionar despesa'}
-          </button>
+          </Button>
         </form>
       </div>
     );
