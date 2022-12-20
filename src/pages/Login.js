@@ -33,7 +33,7 @@ class Login extends Component {
     const { email } = this.state;
     const { dispatch, history } = this.props;
     dispatch(saveUserEmail(email));
-    history.push('/carteira');
+    history.push('/TrybeWallet/carteira');
   };
 
   render() {
